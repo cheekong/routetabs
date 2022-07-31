@@ -1,91 +1,80 @@
 import React from "react";
 import {
-  BrowserRouter,
-  Link,
   Outlet,
   Route,
   Routes,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Tabs } from "../../components/";
-import { TabButton } from "../../components/TabButton";
-import { TabContent } from "../../components/TabContent";
+import { Tabs, TabList, Tab, TabPanel } from "../../components/";
 
-const Profile = () => <div>You're on the Profile asd Tab</div>;
-const Comments = () => <div>You're on the Comments Tab</div>;
-const Contact = () => <div>You're on the Contact Tab</div>;
-const NotFound = () => <div>Not Found</div>;
-
-const config = [
-  { label: "bla", onClick: () => console.log("bla"), elements: <></> },
-  { label: "bla2", onClick: () => console.log("bla2"), elements: <></> },
-];
+// const Profile = () => <TabPanel>You're on the Profile asd Tab</TabPanel>;
+// const Comments = () => <TabPanel>You're on the Comments Tab</TabPanel>;
+// const Contact = () => <TabPanel>You're on the Contact Tab</TabPanel>;
+// const NotFound = () => <TabPanel>Not Found</TabPanel>;
 
 function TabView() {
   const navigate = useNavigate();
+  const pathName = useLocation().pathname;
+  console.log("pathName", pathName);
+  const splitPathnames = useLocation()
+    .pathname.split("/")
+    .filter((e) => e);
+
+  // console.log(
+  //   "splitPathnames",
+  //   splitPathnames,
+  //   splitPathnames.length ? splitPathnames[0] : "potato",
+  //   pathName
+  // );
   return (
     <>
       TSET
-      <Tabs>
-        <TabButton navigationPath="../potato">Potato</TabButton>
-        <TabButton navigationPath="../noodle">Noodle</TabButton>
-      </Tabs>
-      <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route index element={null} />
-          <Route
-            path="potato"
-            element={
-              <>
-                <TabContent>
-                  <Tabs>
-                    <TabButton navigationPath="../potato/white">
-                      White Potato
-                    </TabButton>
-                    <TabButton navigationPath="../potato/sweet">
-                      Sweet Potato
-                    </TabButton>
-                    <TabButton navigationPath="../potato/purple">
-                      Purple Potato
-                    </TabButton>
-                  </Tabs>
-                </TabContent>
-                <Outlet />
-              </>
-            }
+      <Tabs id="carbTabs" defaultTab={pathName === "/" ? "potato" : pathName}>
+        <TabList ariaLabel="carbTabList">
+          <Tab
+            id="potato"
+            ariaControls="potatoTabPanel"
+            onClick={() => navigate("../potato")}
           >
-            <Route path="white" element={<div>white</div>} />
-            <Route path="sweet" element={<div>sweet</div>} />
-            <Route path="purple" element={<div>purple</div>} />
-          </Route>
-        </Route>
-        <Route
-          path="noodle"
-          element={
-            <>
-              <TabContent>
-                <Tabs>
-                  <TabButton navigationPath="../noodle/egg">
-                    Egg Noodle
-                  </TabButton>
-                  <TabButton navigationPath="../noodle/flat">
-                    Flat Noodle
-                  </TabButton>
-                  <TabButton navigationPath="../noodle/vermicelli">
-                    Vermicelli
-                  </TabButton>
-                </Tabs>
-              </TabContent>
-              <Outlet />
-            </>
-          }
-        >
-          <Route path="egg" element={<div>eggt</div>} />
-          <Route path="flat" element={<div>flat</div>} />
-          <Route path="vermicelli" element={<div>vermicelli</div>} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+            Potato
+          </Tab>
+          <Tab
+            id="noodle"
+            ariaControls="noodleTabPanel"
+            onClick={() => navigate("../noodle")}
+          >
+            Noodle
+          </Tab>
+        </TabList>
+        <TabPanel id="potatoTabPanel" ariaLabelLedby="potato">
+          <TabList ariaLabel="potatoTabList" ariaLabelLedby="potatoTabPanel">
+            <Tab
+              id="sweet"
+              ariaControls="sweetPanel"
+              onClick={() => navigate("../potato/sweet")}
+            >
+              sweet
+            </Tab>
+            <Tab
+              id="purple"
+              ariaControls="purplePanel"
+              onClick={() => navigate("../potato/purple")}
+            >
+              purple
+            </Tab>
+          </TabList>
+          <TabPanel id="sweetPanel" ariaLabelLedby="sweet">
+            content for sweetPanel
+          </TabPanel>
+          <TabPanel id="purplePanel" ariaLabelLedby="purple">
+            content for purplePanel
+          </TabPanel>
+        </TabPanel>
+        <TabPanel id="noodleTabPanel" ariaLabelLedby="noodle">
+          content for tab 2
+        </TabPanel>
+      </Tabs>
     </>
   );
 }
@@ -94,10 +83,10 @@ function Layout() {
   const navigate = useNavigate();
   return (
     <>
-      <Tabs>
-        <TabButton navigationPath="../potato">Potato</TabButton>
-        <TabButton navigationPath="../noodle">Noodle</TabButton>
-      </Tabs>
+      {/* <Tabs>
+        <Tab navigationPath="../potato">Potato</Tab>
+        <Tab navigationPath="../noodle">Noodle</Tab>
+      </Tabs> */}
       {/* <nav>
         <ul>
           <li>
