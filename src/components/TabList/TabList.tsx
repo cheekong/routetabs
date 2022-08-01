@@ -1,4 +1,5 @@
 import React, { FC, useCallback } from "react";
+import "./TabList.css";
 
 export interface TabListProps {
   children: React.ReactNode;
@@ -6,7 +7,11 @@ export interface TabListProps {
   ariaLabelLedby?: string;
 }
 
-export const TabList: FC<TabListProps> = ({ children, ariaLabel }) => {
+export const TabList: FC<TabListProps> = ({
+  children,
+  ariaLabel,
+  ariaLabelLedby,
+}) => {
   const refList = React.useRef<HTMLDivElement>(null);
 
   const onKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -38,6 +43,7 @@ export const TabList: FC<TabListProps> = ({ children, ariaLabel }) => {
       ref={refList}
       role="tablist"
       aria-label={ariaLabel}
+      aria-labelledby={ariaLabelLedby}
       onKeyDown={onKeyDown}
     >
       {children}

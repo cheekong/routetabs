@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { TabsContext } from "../Tabs";
+import "./TabPanel.css";
 
 export interface TabPanelProps {
   id: string;

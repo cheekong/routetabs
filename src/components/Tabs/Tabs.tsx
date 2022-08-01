@@ -18,8 +18,6 @@ export const TabsContext = React.createContext<{
 });
 
 export const Tabs: FC<TabsProps> = ({ id, children, defaultTab }) => {
-  console.log("!!! defaultTab", defaultTab);
-
   const [selectedTab, setSelectedTab] = useState(defaultTab);
 
   useEffect(() => {
@@ -41,7 +39,7 @@ export const Tabs: FC<TabsProps> = ({ id, children, defaultTab }) => {
       setSelectedTab,
       selectedTab,
     }),
-    [setSelectedTab, selectedTab, defaultTab]
+    [setSelectedTab, selectedTab]
   );
 
   return (
