@@ -24,7 +24,7 @@ export const Tabs: FC<TabsProps> = ({ id, children, defaultTab }) => {
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div id="carbTab" className="tabs">
+      <div id={id} data-testid={id} className="tabs">
         {children}
       </div>
     </TabsContext.Provider>

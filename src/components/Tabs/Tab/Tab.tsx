@@ -27,7 +27,7 @@ export const Tab: FC<TabProps> = ({
       aria-selected={isTabSelected ? "true" : "false"}
       aria-controls={ariaControls}
       onClick={() => {
-        setSelectedTab(selectedTab);
+        setSelectedTab(id);
         onClick();
       }}
     >

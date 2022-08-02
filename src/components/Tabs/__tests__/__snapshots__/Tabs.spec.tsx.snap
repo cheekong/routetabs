@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabList renders tab buttons correctly, have expected arial attributes and able to use keyboard to navigate tabs 1`] = `
+<div>
+  <div
+    class="tabs"
+    data-testid="carbTab"
+    id="carbTab"
+  >
+    <div
+      aria-label="carbTabList"
+      data-testid="carbTabList"
+      role="tablist"
+    >
+      <button
+        aria-controls="potatoTabPanel"
+        aria-selected="true"
+        data-testid="potato"
+        id="potato"
+        role="tab"
+        tabindex="0"
+        type="button"
+      >
+        Potato
+      </button>
+      <button
+        aria-controls="noodleTabPanel"
+        aria-selected="false"
+        data-testid="noodle"
+        id="noodle"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        Noodle
+      </button>
+      <div
+        aria-labelledby="potato"
+        data-testid="potatoTabPanel"
+        id="potatoTabPanel"
+        role="tabpanel"
+        tabindex="0"
+      >
+        more potatoes to come
+      </div>
+    </div>
+  </div>
+</div>
+`;
