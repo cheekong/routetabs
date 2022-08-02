@@ -1,0 +1,13 @@
+[role="tabpanel"] {
+  background: white;
+  overflow: auto;
+  margin-top: 10px;
+}
+
+[role="tabpanel"]:last-of-type {
+  min-height: 10em;
+}
+
+[role="tabpanel"].is-hidden {
+  display: none;
+}

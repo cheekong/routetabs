@@ -1,20 +1,10 @@
-import React, { FC, ReactNode, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { TabsContextArgs, TabsProps } from ".";
 import "./Tabs.css";
 
-export interface TabsProps {
-  id: string;
-  defaultTab: string;
-  children: ReactNode;
-}
-
-export const TabsContext = React.createContext<{
-  selectedTab: string | null;
-  setSelectedTab: (tab: string) => void;
-}>({
-  selectedTab: null,
-  setSelectedTab: (tab: string) => {
-    throw new Error("should not be used without TabsContext.Provider");
-  },
+export const TabsContext = React.createContext<TabsContextArgs>({
+  selectedTab: "/",
+  setSelectedTab: (tab: string) => {},
 });
 
 export const Tabs: FC<TabsProps> = ({ id, children, defaultTab }) => {
@@ -23,16 +13,6 @@ export const Tabs: FC<TabsProps> = ({ id, children, defaultTab }) => {
   useEffect(() => {
     setSelectedTab(defaultTab);
   }, [defaultTab]);
-  console.log("selectedTab", selectedTab);
-  // if (id === "carbTabs") {
-  //   console.log(id + " " + selectedTab);
-  //   console.log("splitTrueValue", splitTrueValue);
-  // }
-
-  // const contextValue = useMemo((){
-  //   setSelectedTab,
-  //   selectedTab,
-  // };
 
   const contextValue = React.useMemo(
     () => ({
@@ -44,7 +24,7 @@ export const Tabs: FC<TabsProps> = ({ id, children, defaultTab }) => {
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div id="carbTab" className="tab-group">
+      <div id="carbTab" className="tabs">
         {children}
       </div>
     </TabsContext.Provider>

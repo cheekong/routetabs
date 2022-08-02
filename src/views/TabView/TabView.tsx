@@ -55,21 +55,27 @@ export const TabView: FC = () => {
                 ariaLabelLedby="potatoTabPanel"
               >
                 <Tab
-                  id="sweet"
-                  ariaControls="sweetPanel"
-                  onClick={() => navigate("../potato/sweet")}
+                  id="japanese"
+                  ariaControls="japanesePanel"
+                  onClick={() => navigate("../potato/purple/japanese")}
                   tabIndex={0}
                 >
-                  japanese purple sweet potato
+                  japanese purple potato
                 </Tab>
                 <Tab
-                  id="purple"
-                  ariaControls="purplePanel"
-                  onClick={() => navigate("../potato/purple")}
+                  id="regular"
+                  ariaControls="regularPanel"
+                  onClick={() => navigate("../potato/purple/regular")}
                 >
-                  regular purple swweet potato
+                  regular purple potato
                 </Tab>
               </TabList>
+              <TabPanel id="regularPanel" ariaLabelLedby="regular">
+                TBA. Purples rolling in
+              </TabPanel>
+              <TabPanel id="japanesePanel" ariaLabelLedby="japanese">
+                TBA more Japanese potatoes
+              </TabPanel>
             </TabPanel>
           </TabPanel>
           <TabPanel id="noodleTabPanel" ariaLabelLedby="noodle">
