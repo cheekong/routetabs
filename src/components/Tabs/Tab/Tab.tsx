@@ -4,16 +4,18 @@ import { isSelected } from "../../../utils";
 import { TabsContext } from "..";
 import "./Tab.css";
 import { TabProps } from "./Tab.types";
+import { useNavigate } from "react-router-dom";
 
 export const Tab: FC<TabProps> = ({
   id,
   children,
-  onClick,
   ariaControls,
   tabIndex,
+  path,
 }) => {
   const { selectedTab, setSelectedTab } = useContext(TabsContext);
   const isTabSelected = isSelected(selectedTab, id);
+  const navigate = useNavigate();
 
   return (
     <button
@@ -27,8 +29,8 @@ export const Tab: FC<TabProps> = ({
       aria-selected={isTabSelected ? "true" : "false"}
       aria-controls={ariaControls}
       onClick={() => {
-        setSelectedTab(id);
-        onClick();
+        setSelectedTab(path);
+        navigate(path);
       }}
     >
       {children}

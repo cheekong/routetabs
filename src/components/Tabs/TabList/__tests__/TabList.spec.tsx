@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { TabsContext } from "../../Tabs";
 import { Tab } from "../../Tab/Tab";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 
 interface RenderProps extends TabListProps {
   selectedTab: string;
@@ -16,9 +17,11 @@ const renderComponent = ({
   ...tabListProps
 }: RenderProps) => {
   return render(
-    <TabsContext.Provider value={{ selectedTab, setSelectedTab }}>
-      <TabList {...tabListProps}>{children}</TabList>
-    </TabsContext.Provider>
+    <BrowserRouter>
+      <TabsContext.Provider value={{ selectedTab, setSelectedTab }}>
+        <TabList {...tabListProps}>{children}</TabList>
+      </TabsContext.Provider>
+    </BrowserRouter>
   );
 };
 
@@ -29,10 +32,10 @@ describe("TabList", () => {
       ariaLabelLedby: "testLedBy",
       children: (
         <>
-          <Tab id="potato" ariaControls="potatoTabPanel" onClick={jest.fn()}>
+          <Tab id="potato" ariaControls="potatoTabPanel" path="/potato">
             Potato
           </Tab>
-          <Tab id="noodle" ariaControls="noodleTabPanel" onClick={jest.fn()}>
+          <Tab id="noodle" ariaControls="noodleTabPanel" path="/noodle">
             Noodle
           </Tab>
         </>

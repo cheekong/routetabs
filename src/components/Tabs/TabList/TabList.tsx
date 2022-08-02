@@ -21,20 +21,23 @@ export const TabList: FC<TabListProps> = ({
       case "ArrowLeft": {
         const previous = (idx - 1 + tabs.length) % tabs.length;
         tabs[previous]?.focus();
+        tabs[previous]?.click();
         break;
       }
       case "ArrowRight": {
         const next = (idx + 1 + tabs.length) % tabs.length;
         tabs[next]?.focus();
+        tabs[next]?.click();
         break;
       }
       case "Home": {
         tabs[0].focus();
+        tabs[0].click();
         break;
       }
       case "End": {
-        console.log("tabs.length", tabs.length);
         tabs[tabs.length - 1].focus();
+        tabs[tabs.length - 1].click();
         break;
       }
     }

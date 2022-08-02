@@ -1,6 +1,7 @@
 import { Tab, TabProps } from "../";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { TabsContext } from "../../Tabs";
+import { BrowserRouter } from "react-router-dom";
 
 interface RenderProps extends TabProps {
   selectedTab: string;
@@ -13,20 +14,21 @@ const renderComponent = ({
   ...tabProps
 }: RenderProps) => {
   return render(
-    <TabsContext.Provider value={{ selectedTab, setSelectedTab }}>
-      <Tab {...tabProps} />
-    </TabsContext.Provider>
+    <BrowserRouter>
+      <TabsContext.Provider value={{ selectedTab, setSelectedTab }}>
+        <Tab {...tabProps} />
+      </TabsContext.Provider>
+    </BrowserRouter>
   );
 };
 
 describe("Tab", () => {
   it("is selected and correctly fires events, contains aria properties and correctly nests child", () => {
-    const mockFn = jest.fn();
     const setContextMockFn = jest.fn();
     renderComponent({
       id: "testTab",
       children: <p>test value</p>,
-      onClick: mockFn,
+      path: "/testTab",
       ariaControls: "testControl",
       selectedTab: "testTab",
       setSelectedTab: setContextMockFn,
@@ -36,7 +38,6 @@ describe("Tab", () => {
     fireEvent.click(element);
 
     expect(screen.getByText("test value")).toBeTruthy();
-    expect(mockFn).toBeCalledTimes(1);
     expect(setContextMockFn).toBeCalledTimes(1);
     expect(element).toHaveAttribute("role", "tab");
     expect(element).toHaveAttribute("aria-selected", "true");
@@ -45,12 +46,11 @@ describe("Tab", () => {
   });
 
   it("is not selected and arial selected is false with tabIndex out of order", () => {
-    const mockFn = jest.fn();
     const setContextMockFn = jest.fn();
     renderComponent({
       id: "testTab",
       children: <p>test value</p>,
-      onClick: mockFn,
+      path: "/testTab",
       ariaControls: "testControl",
       selectedTab: "notTestTab",
       setSelectedTab: setContextMockFn,
@@ -60,7 +60,6 @@ describe("Tab", () => {
     fireEvent.click(element);
 
     expect(screen.getByText("test value")).toBeTruthy();
-    expect(mockFn).toBeCalledTimes(1);
     expect(setContextMockFn).toBeCalledTimes(1);
     expect(element).toHaveAttribute("role", "tab");
     expect(element).toHaveAttribute("aria-selected", "false");
@@ -69,12 +68,11 @@ describe("Tab", () => {
   });
 
   it("tabIndex is set to what is passed in via props", () => {
-    const mockFn = jest.fn();
     const setContextMockFn = jest.fn();
     renderComponent({
       id: "testTab",
       children: <p>test value</p>,
-      onClick: mockFn,
+      path: "/testTab",
       ariaControls: "testControl",
       selectedTab: "notTestTab",
       setSelectedTab: setContextMockFn,

@@ -13,18 +13,10 @@ export const TabView: FC = () => {
         <h1>Router Tabs</h1>
         <Tabs id="carbTabs" defaultTab={pathName === "/" ? "potato" : pathName}>
           <TabList ariaLabel="carbTabList">
-            <Tab
-              id="potato"
-              ariaControls="potatoTabPanel"
-              onClick={() => navigate("../potato")}
-            >
+            <Tab id="potato" ariaControls="potatoTabPanel" path="../potato">
               Potato
             </Tab>
-            <Tab
-              id="noodle"
-              ariaControls="noodleTabPanel"
-              onClick={() => navigate("../noodle")}
-            >
+            <Tab id="noodle" ariaControls="noodleTabPanel" path="../noodle">
               Noodle
             </Tab>
           </TabList>
@@ -33,7 +25,7 @@ export const TabView: FC = () => {
               <Tab
                 id="sweet"
                 ariaControls="sweetPanel"
-                onClick={() => navigate("../potato/sweet")}
+                path="../potato/sweet"
                 tabIndex={0}
               >
                 sweet
@@ -41,7 +33,7 @@ export const TabView: FC = () => {
               <Tab
                 id="purple"
                 ariaControls="purplePanel"
-                onClick={() => navigate("../potato/purple")}
+                path="../potato/purple"
               >
                 purple
               </Tab>
@@ -57,7 +49,7 @@ export const TabView: FC = () => {
                 <Tab
                   id="japanese"
                   ariaControls="japanesePanel"
-                  onClick={() => navigate("../potato/purple/japanese")}
+                  path="../potato/purple/japanese"
                   tabIndex={0}
                 >
                   japanese purple potato
@@ -65,7 +57,7 @@ export const TabView: FC = () => {
                 <Tab
                   id="regular"
                   ariaControls="regularPanel"
-                  onClick={() => navigate("../potato/purple/regular")}
+                  path="../potato/purple/regular"
                 >
                   regular purple potato
                 </Tab>

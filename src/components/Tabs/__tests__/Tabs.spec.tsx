@@ -2,12 +2,15 @@ import { Tab, TabList, TabPanel, Tabs, TabsProps } from "../";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { BrowserRouter } from "react-router-dom";
 
 const renderComponent = ({ children, id, defaultTab }: TabsProps) => {
   return render(
-    <Tabs id={id} defaultTab={defaultTab}>
-      {children}
-    </Tabs>
+    <BrowserRouter>
+      <Tabs id={id} defaultTab={defaultTab}>
+        {children}
+      </Tabs>
+    </BrowserRouter>
   );
 };
 
@@ -19,10 +22,10 @@ describe("TabList", () => {
       children: (
         <>
           <TabList ariaLabel="carbTabList">
-            <Tab id="potato" ariaControls="potatoTabPanel" onClick={() => null}>
+            <Tab id="potato" ariaControls="potatoTabPanel" path="potato">
               Potato
             </Tab>
-            <Tab id="noodle" ariaControls="noodleTabPanel" onClick={() => null}>
+            <Tab id="noodle" ariaControls="noodleTabPanel" path="noodle">
               Noodle
             </Tab>
             <TabPanel id="potatoTabPanel" ariaLabelLedby="potato">
