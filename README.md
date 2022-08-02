@@ -1,9 +1,9 @@
 # routetabs
 
-## How to Start:
+## Initial Set up steps:
 
-run <code>yarn && yarn start</code> in terminal
-
-## How to run test script:
-
-run <code>yarn test</code>
+<ul>
+<li>Run <code>yarn</code> this will install the needed npm packages and only needs to be run once.</li>
+<li>Run <code>yarn start</code> to run the app locally this will open a browser window for the site.</li>
+<li>Run <code>yarn test</code> to run the test. The results will display in the terminal window.</li>
+</ul>
