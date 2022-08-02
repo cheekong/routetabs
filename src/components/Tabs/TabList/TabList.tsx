@@ -13,10 +13,11 @@ export const TabList: FC<TabListProps> = ({
     const tabsList = tabsRefList.current;
     if (!tabsList) return;
     const tabs = Array.from<HTMLElement>(
-      tabsList.querySelectorAll('[role="tab"]:not([diabled])')
+      tabsList.querySelectorAll('[role="tab"]')
     );
     const idx = tabs.indexOf(document.activeElement as HTMLElement);
     if (idx < 0) return;
+
     switch (event.key) {
       case "ArrowLeft": {
         const previous = (idx - 1 + tabs.length) % tabs.length;
@@ -43,6 +44,22 @@ export const TabList: FC<TabListProps> = ({
     }
   }, []);
 
+  const onKeyUp = useCallback((event: KeyboardEvent) => {
+    const tabsList = tabsRefList.current;
+    if (!tabsList) return;
+    const tabs = Array.from<HTMLElement>(
+      tabsList.querySelectorAll('[role="tab"]')
+    );
+    const idx = tabs.indexOf(document.activeElement as HTMLElement);
+    if (idx < 0) return;
+    switch (event.key) {
+      case "Tab": {
+        tabs[idx].click();
+        break;
+      }
+    }
+  }, []);
+
   return (
     <div
       data-testid={ariaLabel}
@@ -51,6 +68,7 @@ export const TabList: FC<TabListProps> = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelLedby}
       onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
     >
       {children}
     </div>
