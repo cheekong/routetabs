@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanel } from "../../components/";
 import "./TabView.css";
 
