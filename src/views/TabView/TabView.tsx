@@ -4,7 +4,6 @@ import { Tabs, TabList, Tab, TabPanel } from "../../components/";
 import "./TabView.css";
 
 export const TabView: FC = () => {
-  const navigate = useNavigate();
   const pathName = useLocation().pathname;
 
   return (
